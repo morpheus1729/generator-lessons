@@ -1,17 +1,12 @@
-let i = 0
+const abcs = ["A", "B", "C"]
 
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
-
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
-        }
-    }
+const reverseIterator = function* (array) {
+    yield* array
+    yield* array.map(letter => letter.toLowerCase())
+    yield Math.random()
 }
+
+const iterator = reverseIterator(abcs)
 
 for (let value of iterator) {
     console.log(value)
