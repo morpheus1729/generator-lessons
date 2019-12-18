@@ -1,22 +1,20 @@
-let i = 0
+function* generator() {
+    //first iteration
+    yield 1
 
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
+    //second iteration
+    console.log("second")
+    yield 2
 
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
-        }
-    }
+    //third iteration
+    console.log("third")
 }
 
-for (let value of iterator) {
-    console.log(value)
-}
+const iterator = generator()
 
+console.log(iterator.next())
+console.log(iterator.next())
+console.log(iterator.next())
 
 
 
