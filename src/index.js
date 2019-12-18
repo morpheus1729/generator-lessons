@@ -1,22 +1,16 @@
-let i = 0
+let names = ["John", "Mindy", "Sally"]
 
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
+let result = names.filter(name => name.includes("y")).map(name => name.toLocaleLowerCase())
+console.log(result)
 
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
+function* format(array) {
+    for (let value of array) {
+
+        if (value.includes("y")) {
+            yield value.toLowerCase()
+            return
         }
     }
 }
 
-for (let value of iterator) {
-    console.log(value)
-}
-
-
-
-
+console.log([...format(names)])
