@@ -1,22 +1,19 @@
-let i = 0
-
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
-
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
+function* stateMachine(state) {
+    let transition
+    while (true) {
+        if (transition === "INCREMENT") {
+            state++
         }
+        if (transition === "DECREMENT") {
+            state--
+        }
+        transition = yield state
     }
 }
 
-for (let value of iterator) {
-    console.log(value)
-}
+const iterator = stateMachine(0)
 
-
-
-
+console.log(iterator.next())
+console.log(iterator.next("INCREMENT"))
+console.log(iterator.next("INCREMENT"))
+console.log(iterator.next("DECREMENT"))
