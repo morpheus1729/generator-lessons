@@ -1,22 +1,19 @@
-let i = 0
-
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
-
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
-        }
+function makeAdder(x) {
+    return function (y) {
+        return x + y
     }
 }
 
-for (let value of iterator) {
-    console.log(value)
+let add2 = makeAdder(2)
+
+function* makeAdderGenerator(x) {
+    let y = yield x
+    while (true) {
+        y = yield x + y
+    }
 }
 
-
-
-
+let add2Iterator = makeAdderGenerator(2)
+console.log(add2Iterator.next())
+console.log(add2Iterator.next(1))
+console.log(add2Iterator.next(2))
