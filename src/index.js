@@ -1,19 +1,28 @@
-let i = 0
+const abcs = ["A", "B", "C"]
 
-const next = () => ({
-    value: i++,
-    done: i > 10
+const numbers = [1, 2, 3]
+
+const createReverseIterator = array => ({
+    [Symbol.iterator]() {
+        let i = array.length
+        return {
+            next: () => ({
+                value: array[--i],
+                done: i < 0
+            })
+        }
+    }
 })
 
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
-        }
+const reverseIterator = function* (array) {
+    let i = array.length
+    while (i > 0) {
+        yield array[--i]
     }
 }
 
-for (let value of iterator) {
+
+for (let value of reverseIterator(numbers)) {
     console.log(value)
 }
 
