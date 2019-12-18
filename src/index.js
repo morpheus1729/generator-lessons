@@ -1,22 +1,9 @@
-let i = 0
-
-const next = () => ({
-    value: i++,
-    done: i > 10
-})
-
-const iterator = {
-    [Symbol.iterator]() {
-        return {
-            next
-        }
-    }
+function* range(start, end) {
+    while (start < end) yield start++
 }
 
-for (let value of iterator) {
+for (let value of range(0, 10)) {
     console.log(value)
 }
 
-
-
-
+console.log([...range(0, 100)])
