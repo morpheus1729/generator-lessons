@@ -1,11 +1,20 @@
-const abcs = ["A", "B", "C"]
+let i = 0
 
-const createIterator = abcs[Symbol.iterator].bind(abcs)
+const next = () => ({
+    value: i++,
+    done: i > 10
+})
 
-const iterator = createIterator()
+const iterator = {
+    [Symbol.iterator]() {
+        return {
+            next
+        }
+    }
+}
 
-for (const i of iterator) {
-    console.log(i)
+for (let value of iterator) {
+    console.log(value)
 }
 
 
