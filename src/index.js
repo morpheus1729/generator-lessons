@@ -6,5 +6,4 @@ const iterator = createIterator();
 
 for (const i of iterator) {
   console.log(i);
-  console.log("Sagar Here");
 }
